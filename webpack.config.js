@@ -2,6 +2,9 @@ const path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
 module.exports = {
   entry: './src/index.js',
 
@@ -58,6 +61,11 @@ module.exports = {
     }),
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
+    new CopyWebpackPlugin([{
+      from:path.resolve(__dirname,'src/public'),
+      to:path.resolve(__dirname,'dist'),
+      ignore:['index.html']
+    }])
   ],
 
   // mode:'development',
