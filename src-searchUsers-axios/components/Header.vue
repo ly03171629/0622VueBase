@@ -18,9 +18,7 @@ export default {
   },
   methods:{
     search(){
-      // 如果我们提交给actions需要传递参数，那么参数必须只能一个值
-      // 如果是多个值，必须封装为一个对象去传递
-      this.$store.dispatch('search',this.keyword)
+      this.$bus.$emit('searchAjax',this.keyword)
     }
   }
 };

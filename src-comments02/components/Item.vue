@@ -3,29 +3,26 @@
     <div class="handle">
       <a href="javascript:;" @click="deleteC">删除</a>
     </div>
-    <p class="user">
-      <span>{{ comment.username }}</span
-      ><span>说:</span>
-    </p>
-    <p class="centence">{{ comment.content }}!</p>
+    <p class="user"><span>{{comment.username}}</span><span>说:</span></p>
+    <p class="centence">{{comment.content}}!</p>
   </li>
 </template>
 
 <script>
 export default {
   name: "",
-  props: ["comment", "deleteComment", "index"],
-  methods: {
-    deleteC() {
-      this.deleteComment(this.index);
-    },
-  },
+  props:['comment','deleteComment','index'],
+  methods:{
+    deleteC(){
+      this.deleteComment(this.index)
+    }
+  }
 };
 </script>
 
 <style scoped>
 li {
-  transition: 0.5s;
+  transition: .5s;
   overflow: hidden;
 }
 

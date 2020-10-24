@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.1.0/axios.js"></script>
+  <script>
+    //1、函数是函数函数也是对象
+    //axios本质是一个函数，那么我们也可以说是一个对象
+    // 所以axios两种用法： 函数用法和对象用法（以后探讨）
+
+    // axios的参数
+    // 3种    params   query   data请求体参数
+
+    //query
+    // 接口1: https://api.github.com/search/repositories?q=v&sort=stars
+    // ?q=v&sort=stars 被称作查询参数  其实就是我们的query参数
+    // query参数有两种写法  
+    //1、直接写在url后面 ？ 隔开 https://api.github.com/search/repositories?q=v&sort=stars
+    //2、使用配置项  parmas去配置，是一个对象
+
+    //params参数
+    //params参数只有一种写法，就是在路径当中去写，params参数是属于路径的一部分
+    // http://localhost/users/8?name=zhaoliying&age=33
+    //?name=zhaoliying&age=33是query参数
+    //8 是一个参数，是params参数  是真正的params参数
+    //axios当中params参数只能写在路径当中，没有params参数的配置项
+    
+
+    //data参数： 请求体参数
+    // 请求体参数 是向后台提交数据使用的  post  put请求当中使用
+    //data参数 配置项data当中去配置，data必须是一个对象
+
+
+
+    // http请求包含两种  
+    //一种普通的http请求     post   get
+    //一种是特殊http请求（ajax请求）  
+    //get post  put  delete对应的是请求后端的4种操作  我们把这种接口称为是Restful规范的接口
+    //后端在写接口的时候遵循的一种比较流行的规范 Restful规范 ，它把后端数据全部当做资源对待
+    // 后端会把数据的表(mongodb不是关系型，mysql) 做资源对待,前后端分离项目必然要遵循的
+    //对于这个表来说  我们需要的操作 就是增post   删delete   改put   查get
+
+
+
+    //获取github比较火的仓库
+    //q代表的是仓库名称关键字
+    //star代表的是仓库星星数
+    axios({
+      url:'https://api.github.com/search/repositories',
+      method:'get',
+      params:{
+        q:'v',
+        sort:'stars'
+      }
+    }).then(response => {
+      console.log(response)
+    }).catch(error => {
+      console.log(error.message)
+    })
+
+
+
+
+
+  </script>
+</body>
+</html>

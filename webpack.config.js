@@ -6,7 +6,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 
 module.exports = {
-  entry: './src/index.js',
+  entry: ["@babel/polyfill", './src/index.js'],
 
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -31,7 +31,7 @@ module.exports = {
       //解析css
       {
         test: /\.css$/,
-        use: [ 'vue-style-loader', 'css-loader' ]
+        use: [ 'vue-style-loader','style-loader', 'css-loader' ]
       },
 
       //解析图片
@@ -73,7 +73,23 @@ module.exports = {
   devServer:{
     port:9000,
     open:true,
-    quiet:true
+    quiet:true,
+    proxy: {
+      // /api代表的是路径当中以什么开头，也是在告诉webpack-dev-server 哪些请求需要代理转发
+      // 首先要发送请求，不应该直接往目标服务器去发请求，这样一定跨域
+      // 所以首先我们往本地服务器去发请求，这样webpack才能知道你发的是什么请求
+      
+      // 发送的路径      http://localhost:9000/api/users/info
+      // 最终的目标路径  http://localhost:4000/users/info
+
+      "/api": {
+          target: "http://localhost:4000", //这一步完成后http://localhost:4000/api/users/info
+          pathRewrite: {"^/api" : ""}, //这一步走完 http://localhost:4000/users/info
+          changeOrigin:true  //这一项代表同源策略有任何一项改变都去转发
+      }
+
+
+    }
   },
 
   devtool:'cheap-module-eval-source-map',
