@@ -10,7 +10,8 @@ module.exports = {
 
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    // publicPath: '/',
   },
 
   //配置loader的地方
@@ -74,6 +75,7 @@ module.exports = {
     port:9000,
     open:true,
     quiet:true,
+    // historyApiFallback: true, //备胎，当history模式返回404，那么就强制使用index.html
     proxy: {
       // /api代表的是路径当中以什么开头，也是在告诉webpack-dev-server 哪些请求需要代理转发
       // 首先要发送请求，不应该直接往目标服务器去发请求，这样一定跨域

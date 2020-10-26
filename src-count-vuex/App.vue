@@ -30,6 +30,10 @@ export default {
 
   methods:{
     ...mapActions(['decrement','incrementIfOdd','incrementAsync']),
+
+    
+
+
     ...mapActions({
       increment(){
         // this.count ++
@@ -46,7 +50,6 @@ export default {
     //返回的对象就是
     // {
     //   increment(){
-    //     // this.count ++
     //     //this.$store.dispatch用的就是暴露出来的store对象内部的dispatch方法 去触发相关的actions内部方法
     //     this.$store.dispatch('increment')
     //   },
